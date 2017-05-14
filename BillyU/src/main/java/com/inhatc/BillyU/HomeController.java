@@ -35,5 +35,9 @@ public class HomeController {
 		
 		return "home";
 	}
+	@RequestMapping(value="/Y_Main")
+	public String Y_Main(){
+		return "Y_Main";
+	}
 	
 }
