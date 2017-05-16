@@ -13,12 +13,12 @@ String pronum = request.getParameter("pronum");
 Object quest = request.getParameter("apple");
 String ren = request.getParameter("ren");
 String way = request.getParameter("wayRadio");
-
+String message = request.getParameter("message");
 out.println(pronum);
 out.println(quest);
 out.println(ren);
 out.println(way);
-
+out.println(message);
 %>
 </body>
 </html>

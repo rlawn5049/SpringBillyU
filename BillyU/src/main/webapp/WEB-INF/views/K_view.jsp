@@ -148,6 +148,10 @@
 												name="wayRadio">택배</label>
 												</td>
 									</tr>
+									<tr>
+										<td><label for="possibleDay">메세지 : </label></td>
+										<td><textarea name="message" cols="21" rows="5"></textarea></td>
+									</tr>
 								</tbody>
 							</table>
 							
