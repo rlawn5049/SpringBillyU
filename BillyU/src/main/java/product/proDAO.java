@@ -71,7 +71,7 @@ public class proDAO {
 	public ArrayList<proDTO> MyPage(Object id){
 		try{
 			connect();
-			String sql = "select * from product where nickname='"+id+"'";
+			String sql = "select * from product where nickname='"+id+"' order by pronum desc";
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()){

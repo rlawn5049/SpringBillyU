@@ -60,7 +60,9 @@ response.sendRedirect("Y_Login");}
 <div class="All_wrap">
 <center>
 <div id="product-container">
-<div id="here" style="width:80%"></div>
+<div id="here" style="width:80%">
+<jsp:include page="Y_MyProduct.jsp" />
+</div>
 </center>
 </div>
 </div>

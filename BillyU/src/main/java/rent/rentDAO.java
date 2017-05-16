@@ -74,7 +74,7 @@ public class rentDAO {
 	public ArrayList<rentDTO> rent_list(String nickname){
 		try{
 			connect();
-			String sql = "select * from rent where hoster='"+nickname+"'";
+			String sql = "select * from rent where hoster='"+nickname+"' order by rentnum desc";
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()){
@@ -102,7 +102,7 @@ public class rentDAO {
 	public ArrayList<rentDTO> rent_list2(String nickname){
 		try{
 			connect();
-			String sql = "select * from rent where guest='"+nickname+"'";
+			String sql = "select * from rent where guest='"+nickname+"' order by rentnum desc";
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()){
