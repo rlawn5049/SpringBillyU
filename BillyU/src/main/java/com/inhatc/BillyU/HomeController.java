@@ -85,7 +85,7 @@ public class HomeController {
 	}
 	@RequestMapping(value="/Y_MyMail")
 	public String Y_MyMail(){
-		return "Y_MyPage";
+		return "Y_MyMail";
 	}
 	@RequestMapping(value="/Y_MyPerson")
 	public String Y_MyPerson(){
@@ -98,5 +98,9 @@ public class HomeController {
 	@RequestMapping(value="/Y_Delete_MyProduct")
 	public String Y_Delete_MyProduct(){
 		return "Y_Delete_MyProduct";
+	}
+	@RequestMapping(value="/Y_Rent")
+	public String Y_Rent(){
+		return "Y_Rent";
 	}
 }
