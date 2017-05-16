@@ -55,8 +55,9 @@ public class proDAO {
 				int deposit = rs.getInt("deposit");
 				int salprice = rs.getInt("salprice");
 				String img = rs.getString("img");
+				Timestamp curtime = rs.getTimestamp("curtime");
 
-				dto = new proDTO(pronum,nickname,catnum,title,proinfo,procondition,traway,tratype,renprice,renday,deposit,salprice,img);
+				dto = new proDTO(pronum,nickname,catnum,title,proinfo,procondition,traway,tratype,renprice,renday,deposit,salprice,img,curtime);
 				pro_list.add(dto);
 			}
 			
@@ -87,8 +88,9 @@ public class proDAO {
 				int deposit = rs.getInt("deposit");
 				int salprice = rs.getInt("salprice");
 				String img = rs.getString("img");
+				Timestamp curtime = rs.getTimestamp("curtime");
 
-				dto = new proDTO(pronum,nickname,catnum,title,proinfo,procondition,traway,tratype,renprice,renday,deposit,salprice,img);
+				dto = new proDTO(pronum,nickname,catnum,title,proinfo,procondition,traway,tratype,renprice,renday,deposit,salprice,img,curtime);
 				pro_mylist.add(dto);
 			}
 			
@@ -97,6 +99,15 @@ public class proDAO {
 		}finally{disconnect();}
 		
 		return pro_mylist;
+	}
+	public void delete_product(String pronum){
+		try {
+			connect();
+			String sql="delete from product where pronum='"+pronum+"'";
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

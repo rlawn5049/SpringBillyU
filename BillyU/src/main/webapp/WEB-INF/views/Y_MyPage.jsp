@@ -75,7 +75,7 @@ $('.nav-pills li').click(function(){
 $('.nav-pills li:nth-child(1)').click(function(){
 	$.ajax({
 		type : "POST",
-		url : "./Y_MyProduct.jsp",
+		url : "./Y_MyProduct",
 		success : WhenSuccess,
 		error : WhenError
 	});
@@ -83,7 +83,7 @@ $('.nav-pills li:nth-child(1)').click(function(){
 $('.nav-pills li:nth-child(2)').click(function(){
 	$.ajax({
 		type : "POST",
-		url : "./Y_MyMail.jsp",
+		url : "./Y_MyMail",
 		success : WhenSuccess,
 		error : WhenError
 	});
@@ -91,7 +91,7 @@ $('.nav-pills li:nth-child(2)').click(function(){
 $('.nav-pills li:nth-child(3)').click(function(){
 	$.ajax({
 		type : "POST",
-		url : "./Y_MyWait.jsp",
+		url : "./Y_MyWait",
 		success : WhenSuccess,
 		error : WhenError
 	});
@@ -99,7 +99,7 @@ $('.nav-pills li:nth-child(3)').click(function(){
 $('.nav-pills li:nth-child(4)').click(function(){
 	$.ajax({
 		type : "POST",
-		url : "./Y_MyPerson.jsp",
+		url : "./Y_MyPerson",
 		success : WhenSuccess,
 		error : WhenError
 	});

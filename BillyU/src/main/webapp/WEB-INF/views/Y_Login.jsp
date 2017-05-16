@@ -174,7 +174,7 @@ body {
 <%
 	session.invalidate();
 %>
-<form action="Y_Login_OK.jsp" id="login" method="post">
+<form action="Y_Login_OK" id="login" method="post">
 <a id="kakao-login-btn"></a>
 <input type="hidden" name="login" id="check" />
 </form>
@@ -214,7 +214,7 @@ body {
 	  
   });
 </script>
-<a href="Y_Main.jsp">홈으로</a>
+<a href="Y_Main">홈으로</a>
 <div class="login">
   <header class="login-header"><span class="text">로그인</span><span class="loader"></span></header>
   <form class="login-form">

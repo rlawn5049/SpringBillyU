@@ -460,7 +460,7 @@
 <table class="Y_NavTable">
 <tr>
 <td class="Y_NavLogo">
-<a href="Y_Main.jsp"><img src="/img/BillyU_Logo.png" alt="로고" width="100%" height="80%" /></a>
+<a href="Y_Main"><img src="resources/img/BillyU_Logo.png" alt="로고" width="100%" height="80%" /></a>
 </td>
 <td class="Y_NavBlank"> </td>
 
@@ -502,9 +502,9 @@
 </div>
 <div class="collapse navbar-collapse" id="myNavbar">
 <ul class="nav navbar-nav navbar-right">
-<li><a id="Y_NavContent_Right" href="Y_Chat_Form.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>관심상품</a></li>
-<li><a id="Y_NavContent_Right" href="Y_MyPage.jsp"><span class="glyphicon glyphicon-user"></span>마이페이지</a></li>
-<li><a id="Y_NavContent_Right" href="Y_Login.jsp"><span class="glyphicon glyphicon-log-in"></span>
+<li><a id="Y_NavContent_Right" href="Y_Chat_Form"><span class="glyphicon glyphicon-shopping-cart"></span>관심상품</a></li>
+<li><a id="Y_NavContent_Right" href="Y_MyPage"><span class="glyphicon glyphicon-user"></span>마이페이지</a></li>
+<li><a id="Y_NavContent_Right" href="Y_Login"><span class="glyphicon glyphicon-log-in"></span>
           <%
           if(session.getAttribute("id") != null){
         	  out.println("로그아웃");
@@ -515,8 +515,8 @@
           %>
           
           </a></li>
-<li><a id="Y_NavContent_Right" href="Y_JoinForm.jsp"><span class="glyphicon glyphicon-check"></span>회원가입</a></li>
-<li><a id="Y_NavContent_Right" href="K_product.jsp"><span class="glyphicon glyphicon-plus"></span>상품등록</a></li>
+<li><a id="Y_NavContent_Right" href="Y_JoinForm"><span class="glyphicon glyphicon-check"></span>회원가입</a></li>
+<li><a id="Y_NavContent_Right" href="K_product"><span class="glyphicon glyphicon-plus"></span>상품등록</a></li>
 </ul>
 </div>
 </div>

@@ -12,15 +12,12 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
 <!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <style>
 .container img {
 	margin: 0 auto;
@@ -34,16 +31,10 @@
 </head>
 <body>
 	<jsp:include page="Y_NavBar.jsp"></jsp:include>
-	
-	
-	<!-- 영빈영빈영빈영빈영빈영빈영빈영빈 -->
 	<%
+	if(session.getAttribute("id") == null){response.sendRedirect("Y_Login");}
 	String y_pronum = request.getParameter("pronum");
 	%>
-	<a href="Y_Chat_Form.jsp?pronum=<%=y_pronum %>">신청하기</a>
-	<!-- 영빈영빈영빈영빈영빈영빈영빈영빈 -->
-	
-	
 	<jsp:useBean id="sel" class="com.openmarket.Capstone_productDAO"></jsp:useBean>
 	<%
 		ArrayList<String> al = sel.selectProduct();
@@ -106,13 +97,16 @@
 						int renprice = Integer.parseInt(al.get(5));
 						int deposit = Integer.parseInt(al.get(7));
 					%>
-						<h1 class="text-center"><%= (renprice+deposit) +"원" %></h1>
+						<h1 class="text-center" id="title_cost"><%= (renprice+deposit) +"원" %></h1>
 						<br>
 						<p class="text-center">
 							<small> 대여비 <%= renprice %>(1주) + 보증금 <%=deposit %> </small>
 						</p>
 					</div>
 					<div class="panel-body">
+					<form action="Y_Submit_Product" method="post">
+					<input type="hidden" name="pronum" value="<%=y_pronum %>" />
+					<input type="hidden" name="apple" value="<%=session.getAttribute("id")%>">
 						<div class="form-group">
 							<table class="table table-hover">
 								<thead>
@@ -124,33 +118,43 @@
 								<tbody>
 									<tr>
 										<td><label for="fee">대여료 : </label></td>
-										<td> <%= al.get(5) %><small>/1주</small></td>
+										<td><input type="hidden" id="rent_cost" value="<%= al.get(5) %>" /><%= al.get(5) %><small>/1주</small></td>
 									</tr>
 									<tr>
 										<td><label for="deposit">보증금 : </label></td>
-										<td><%= al.get(7) %></td>
+										<td><input type="hidden" id="bo_cost" value="<%= al.get(7) %>" /><%= al.get(7) %></td>
 									</tr>
 									<tr>
 										<td><label for="possibleDay">대여가능 일수 : </label></td>
 										<td><%= al.get(6) %></td>
 									</tr>
 									<tr>
+										<td><label for="possibleDay">신청할 일수 : </label></td>
+										<td><input type="text" id="ren" name="ren"/></td>
+									</tr>
+									<tr>
+										<td><label for="possibleDay">총 액 : </label></td>
+										<td><span id="total_money">0원</span></td>
+									</tr>
+									<tr>
 										<td><label for="tradeWay">거래방식 : </label></td>
 										<td>
 
 										<label class="radio-inline"><input
-												type="radio" name="wayRadio">직거래</label>
+												type="radio" name="wayRadio" value="직거래">직거래</label>
 
 										<label
-											class="radio-inline"><input type="radio"
+											class="radio-inline"><input type="radio" value="택배"
 												name="wayRadio">택배</label>
 												</td>
 									</tr>
 								</tbody>
 							</table>
+							
 							<input type="submit" class="btn btn-primary btn-lg btn-block" value="신청하기"> 
 							<input type="submit" class="btn btn-default btn-lg btn-block" value="찜하기">
 						</div>
+						</form>
 						<!-- form 문 끝 -->
 
 					</div>
@@ -244,5 +248,16 @@
 			<h1>FOOTER SPACE</h1>
 			<p>This space belong to space for FOOTER.</p>
 	</div>
+	<script type="text/javascript">
+	$('#ren').blur(function(){
+		var to = Number($('#ren').val());
+		var rent =  Number($('#rent_cost').val());
+		var bo =  Number($('#bo_cost').val());
+		var total =  Math.floor(Number(to*(rent/7)+bo));
+	
+		$('#total_money').text(total+'원');
+		$('#title_cost').html(total+'원');
+	});
+	</script>
 </body>
 </html>

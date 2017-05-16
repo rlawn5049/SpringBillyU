@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.sql.*" %>
 <%@ page import="product.proDAO" %>
 <%@ page import="product.proDTO" %>
 <%@ page import="java.util.*" %>
@@ -105,6 +105,7 @@ height:100%;
 		int salprice = dto.getSalprice();
 		int catnum = dto.getCatnum();
 		String proinfo = dto.getProinfo();
+		Timestamp curtime = dto.getCurtime();
 		
 		if(catnum<200 && catnum>100){
 			Y_Category="cate1";
@@ -160,10 +161,10 @@ height:100%;
 		{
 			%>
 	<div class="panel panel-primary <%=Y_Category%> post">
-      <div class="panel-heading" style="height:32px"><span style="float:left">상품번호(<%=pronum %>)</span><span style="text-align:center;">대여상품(<%=cate_name %>)</span><span style="float:right"><a style="color:white" href="#">X</a></span></div>
+      <div class="panel-heading" style="height:32px"><span style="float:left">상품번호(<%=pronum %>)</span><span style="text-align:center;">대여상품(<%=cate_name %>)</span><span style="float:right;color:white"><%=curtime %></span></div>
       <div class="panel-body">
-      <div class="col-xs-3 col-md-3"><a href="K_view.jsp?pronum=<%=pronum %>"><img class="img-rounded" src="<%=img %>" alt="사진없음" /></a></div>
-      <div class="col-xs-6 col-md-3"><a href="K_view.jsp?pronum=<%=pronum %>"><%=title %></a></div>
+      <div class="col-xs-3 col-md-3"><a href="K_view?pronum=<%=pronum %>"><img class="img-rounded" src="<%=img %>" alt="사진없음" /></a></div>
+      <div class="col-xs-6 col-md-3"><a href="K_view?pronum=<%=pronum %>"><%=title %></a></div>
       <div class="col-xs-1 col-md-2">대여료(원)<br /><br /><%=renprice %></div>
       <div class="col-xs-1 col-md-2">보증금(원)<br /><br /><%=deposite %></div>
       <div class="col-xs-1 col-md-2">대여기간(일)<br /><br /><%=renday %></div>
@@ -173,7 +174,7 @@ height:100%;
 		}else{
 			%>
 	<div class="panel panel-danger <%=Y_Category%> post">
-      <div class="panel-heading" style="height:32px"><span style="float:left">상품번호(<%=pronum %>)</span><span style="text-align:center;">판매상품(<%=cate_name %>)</span><span style="float:right"><a style="color:white" href="#">X</a></span></div>
+      <div class="panel-heading" style="height:32px"><span style="float:left">상품번호(<%=pronum %>)</span><span style="text-align:center;">판매상품(<%=cate_name %>)</span><span style="float:right;color:white"><%=curtime %></span></div>
       <div class="panel-body">
       <div class="col-xs-3 col-md-3"><a href="K_view.jsp?pronum=<%=pronum %>"><img class="img-rounded" src="<%=img %>" alt="사진없음" /></a></div>
       <div class="col-xs-6 col-md-3"><a href="K_view.jsp?pronum=<%=pronum %>"><%=title %></a></div>

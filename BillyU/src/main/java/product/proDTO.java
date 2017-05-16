@@ -1,5 +1,7 @@
 package product;
 
+import java.sql.Timestamp;
+
 public class proDTO {
 
 	int pronum;
@@ -15,11 +17,11 @@ public class proDTO {
 	int deposit;
 	int salprice;
 	String img;
-
+	Timestamp curtime;
 	
 	
 
-	public proDTO(int pronum,String nickname,int catnum,String title,String proinfo,String procondition,String traway,String tratype,int renprice,int renday,int deposit,int salprice,String img){
+	public proDTO(int pronum,String nickname,int catnum,String title,String proinfo,String procondition,String traway,String tratype,int renprice,int renday,int deposit,int salprice,String img,Timestamp curtime){
 		this.pronum = pronum;
 		this.nickname = nickname;
 		this.catnum = catnum;
@@ -33,9 +35,17 @@ public class proDTO {
 		this.deposit = deposit;
 		this.salprice = salprice;
 		this.img = img;
-
+		this.curtime = curtime;
 	}
 	
+	public Timestamp getCurtime() {
+		return curtime;
+	}
+
+	public void setCurtime(Timestamp curtime) {
+		this.curtime = curtime;
+	}
+
 	public String getImg() {
 		return img;
 	}
