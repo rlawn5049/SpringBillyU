@@ -49,23 +49,23 @@
         			<input type="file" name="upfile3" id="image3" style="display: none;">
         			<input type="file" name="upfile4" id="image4" style="display: none;">
     				<div id="image_preview" >
-        				<img src="img/noimage.jpg " style="border: 1px solid black; width: 400px; height: 300px;" border="0" onclick="document.all.upfile.click(); ">
+        				<img src="resources/img/noimage.jpg " style="border: 1px solid black; width: 400px; height: 300px;" border="0" onclick="document.all.upfile.click(); ">
         				<br>
         				<div id="J_image_box" style="display: none;">
     						<div class= "row">
     							<div class="col-lg-4">
     								<div id="J_image_2" style=" width: 100px; height: 100px; float: left;">
-    									<img src="img/noimage.jpg " style="border: 1px solid black; width: 100px; height: 100px;" border="0" onclick="document.all.upfile2.click(); ">
+    									<img src="resources/img/noimage.jpg " style="border: 1px solid black; width: 100px; height: 100px;" border="0" onclick="document.all.upfile2.click(); ">
     								</div>
     							</div>
     							<div class="col-lg-4">
     								<div id="J_image_3" style=" width: 100px; height: 100px; float: left; ">
-    									<img src="img/noimage.jpg " style="border: 1px solid black; width: 100px; height: 100px;" border="0" onclick="document.all.upfile3.click(); ">
+    									<img src="resources/img/noimage.jpg " style="border: 1px solid black; width: 100px; height: 100px;" border="0" onclick="document.all.upfile3.click(); ">
     								</div>
     							</div>
     							<div class="col-lg-4">
     								<div id="J_image_4" style=" width: 100px; height: 100px; float: left; ">
-    									<img src="img/noimage.jpg " style="border: 1px solid black; width: 100px; height: 100px;" border="0" onclick="document.all.upfile4.click(); ">
+    									<img src="resources/img/noimage.jpg " style="border: 1px solid black; width: 100px; height: 100px;" border="0" onclick="document.all.upfile4.click(); ">
     								</div>
     							</div>
     						</div>

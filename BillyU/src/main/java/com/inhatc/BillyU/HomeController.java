@@ -1,8 +1,15 @@
 package com.inhatc.BillyU;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.Locale;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +17,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.openmarket.Capstone_productDAO;
+import com.openmarket.Capstone_productDTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Handles requests for the application home page.
@@ -102,5 +114,110 @@ public class HomeController {
 	@RequestMapping(value="/Y_Rent")
 	public String Y_Rent(){
 		return "Y_Rent";
+	}
+	@RequestMapping(value = "/K_product")
+	public String K_product(HttpServletRequest httpservletrequest, Model model){
+		return "K_product";
+	}
+	@RequestMapping(value = "/regist.do")
+	public String registdo(HttpServletRequest req, Model model){
+		Capstone_productDAO dao = new Capstone_productDAO();
+		String category = req.getParameter("category"); 
+		int catnum = dao.selectCatnum(category); 
+		String title = req.getParameter("title");
+		String productinfo = req.getParameter("productinfo");
+		String productcondition = req.getParameter("procondition");
+		String tratype = req.getParameter("tratype");
+		String traway = req.getParameter("traway");
+		String salprice_s = req.getParameter("salprice");
+		String renprice_s = req.getParameter("renprice");
+		String deposit_s = req.getParameter("deposit");
+		String renday_s = req.getParameter("renday");
+		
+		if(salprice_s == ""){
+			salprice_s = "0";
+		}else if(renprice_s == ""){
+			renprice_s ="0";
+			deposit_s = "0";
+			renday_s = "0";
+		}
+		
+		int salprice = Integer.parseInt(salprice_s);
+
+	
+		int renprice = Integer.parseInt(renprice_s);
+		int deposit = Integer.parseInt(deposit_s);
+		int renday = Integer.parseInt(renday_s);
+		
+		Capstone_productDTO dto = new Capstone_productDTO();
+		
+		HttpSession ses = req.getSession();
+		String nickname = (String)ses.getAttribute("id");
+		
+		dto.setNickname(nickname); 
+		dto.setCatnum(catnum);
+		dto.setTitle(title);
+		dto.setProinfo(productinfo);
+		dto.setProcondition(productcondition);
+		dto.setTraway(traway);
+		dto.setSalprice(salprice);
+
+		dto.setTratype(tratype);
+
+		dto.setRenprice(renprice);
+		dto.setDeposit(deposit);
+		dto.setRenday(renday);
+		
+		if (dto.getTratype().equals("rent")) {
+			dao.insertRentProduct(dto); 
+		} else if (dto.getTratype().equals("sale")) {
+			dao.insertSaleProduct(dto); 
+		}
+		
+//		RequestDispatcher view = req.getRequestDispatcher("K_addImg.jsp");
+//		view.forward(req, resp);
+		return "K_addImg";
+	}
+	@RequestMapping(value = "/K_addImg")
+	public String K_addImg(){
+		return "K_addImg";
+	}
+	@RequestMapping(value = "/regist.ro")
+	public String registro(HttpServletRequest req, Model model) throws IOException{
+		String savePath = "C:/Users/rlawn/Documents/Springgit/BillyU/src/main/webapp/resources/img";
+		
+		int sizeLimit = 10 * 1024 * 1024; 
+		String img = "";
+		String img2 = "";
+		String img3 = "";
+		String img4 = "";
+		
+		MultipartRequest multi = new MultipartRequest(req, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
+		Enumeration files = multi.getFileNames(); 
+
+		String file = (String) files.nextElement();
+		img = multi.getOriginalFileName(file);
+		String file2 = (String) files.nextElement();
+		img2 = multi.getOriginalFileName(file2);
+		String file3 = (String) files.nextElement();
+		img3 = multi.getOriginalFileName(file3);
+		String file4 = (String) files.nextElement();
+		img4 = multi.getOriginalFileName(file4);
+		
+		com.openmarket2.Capstone_productDAO dao = new com.openmarket2.Capstone_productDAO();
+		com.openmarket2.Capstone_productDTO dto = new com.openmarket2.Capstone_productDTO();
+		
+		dto.setImg(img);
+		dto.setImg2(img2);
+		dto.setImg3(img3);
+		dto.setImg4(img4);
+		
+		int pronum = dao.selectPronum();
+		dao.insertImage(dto, pronum);
+		
+//		RequestDispatcher view = req.getRequestDispatcher("K_view.jsp");
+//		view.forward(req, resp);
+		
+		return "Y_MyPage";
 	}
 }

@@ -13,18 +13,18 @@ import com.openmarket.*;
 public class Capstone_productDAO {
 private static Connection conn;
 	
-	//DB¿¬µ¿
+	//DBï¿½ï¿½ï¿½ï¿½
 	public Capstone_productDAO() {
 		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 		}catch(ClassNotFoundException ex){
-			System.out.println("µå¶óÀÌ¹ö¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		}
 		try{
 			conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/billyu","root","1234");
 		}catch(SQLException ex){
-			System.out.println("SQL ¿À·ù(Connection) : " + ex.getLocalizedMessage());
+			System.out.println("SQL ï¿½ï¿½ï¿½ï¿½(Connection) : " + ex.getLocalizedMessage());
 		}
 	}
 	
@@ -32,70 +32,86 @@ private static Connection conn;
 	
 	//insert image
 	public boolean insertImage(Capstone_productDTO dto, int pronum){
-		//String query = "insert into product (nickname, catnum, title, proinfo, procondition, traway, tratype, salprice) values (?, ?, ?, ?, ?, ?, ?, ?);";
-		//String query = "insert into image values (?, 'img/"+ '?' +"','img/"+ '?' +"','img/"+ '?' +"','img/"+ '?' +"');";
+		
 		String query = "insert into image values (?, ?, ?, ?, ?);";
-		boolean check = false;			//insert°¡ ¼º°øÇß´ÂÁö È®ÀÎÇÏ±âÀ§ÇÑ boolean
+		boolean check = false;			//insertï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ boolean
 		try{
-			//stament°¡ ¾Æ´Ñ preparedStatemintÀÎ ÀÌÀ¯´Â values¿¡ ?¸¦ »ç¿ëÇØ¼­ ¹Ø¿¡¼­ º¸±âÁÁ°Ô ÇÏ³ªÇÏ³ª ³Ö¾îÁÖ±â À§ÇØ¼­!!!!
+			//stamentï¿½ï¿½ ï¿½Æ´ï¿½ preparedStatemintï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ valuesï¿½ï¿½ ?ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ø¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½Ï³ï¿½ ï¿½Ö¾ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½!!!!
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, pronum);
-			pstmt.setString(2, "img/"+dto.getImg());
-			pstmt.setString(3, "img/"+dto.getImg2());
-			pstmt.setString(4, "img/"+dto.getImg3());
-			pstmt.setString(5, "img/"+dto.getImg4());
+			pstmt.setString(2, "resources/img/"+dto.getImg());
+			pstmt.setString(3, "resources/img/"+dto.getImg2());
+			pstmt.setString(4, "resources/img/"+dto.getImg3());
+			pstmt.setString(5, "resources/img/"+dto.getImg4());
 			
-			pstmt.executeUpdate();			//UPDATE, DELETE µî °á°ú°¡ ¾øÀ» ¶§ »ç¿ë
+			pstmt.executeUpdate();			//UPDATE, DELETE ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 			check = true;
 			pstmt.close();
 		}catch(SQLException ex){
-			System.out.println("SQL insertImage ¿À·ù : " + ex.getLocalizedMessage());
+			System.out.println("SQL insertImage ï¿½ï¿½ï¿½ï¿½ : " + ex.getLocalizedMessage());
 		}	
 		return check;
 	}
-	
-	//select·Î ÀÌ¹Ì ¸¸µç pronumÀ» ¹ÝÈ¯ÇÑ´Ù
+	public boolean updateImage(Capstone_productDTO dto, int pronum){
+		
+		String query = "update product set img='?' where pronum = ? ;";
+		boolean check = false;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, pronum);
+			pstmt.setString(2, "resources/img/"+dto.getImg());
+			
+			pstmt.executeUpdate();			//UPDATE, DELETE ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
+			check = true;
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+		
+	}
 		public int selectPronum(){
 			String query = "SELECT * FROM product";
 			int pronum = 0 ; 
 			try{
-				Statement stmt = conn.createStatement();		//¹®ÀÚ¿­ sql¹®À» sql ¼öÇà½ÃÅ³¼ö ÀÖ´Â statement»ý¼º
-				ResultSet rs = stmt.executeQuery(query);		//select¹® ½ÇÇà
+				Statement stmt = conn.createStatement();		
+				ResultSet rs = stmt.executeQuery(query);		
 				rs.last();
 				pronum = Integer.parseInt(rs.getString("pronum"));
 				
 				stmt.close();
 			}catch(SQLException ex){
-				System.out.println("SQL selectCatnum ¿À·ù : " + ex.getLocalizedMessage());
+				System.out.println("SQL selectCatnum ï¿½ï¿½ï¿½ï¿½ : " + ex.getLocalizedMessage());
 			}	
 			return pronum;
 		}
 	
 	
-	//ÀÔ·Â¹ÞÀº small(¼ÒºÐ·ù)·Î catnum Ã£¾ÆÁÖ´Â ÇÔ¼ö
+
 	public int selectCatnum(String catname){
 		String query = "SELECT catnum FROM category WHERE small = " + "'" + catname +"'";
 		int catnum = 0 ; 
 		try{
-			Statement stmt = conn.createStatement();		//¹®ÀÚ¿­ sql¹®À» sql ¼öÇà½ÃÅ³¼ö ÀÖ´Â statement»ý¼º
-			ResultSet rs = stmt.executeQuery(query);		//select¹® ½ÇÇà
+			Statement stmt = conn.createStatement();		//ï¿½ï¿½ï¿½Ú¿ï¿½ sqlï¿½ï¿½ï¿½ï¿½ sql ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ ï¿½Ö´ï¿½ statementï¿½ï¿½ï¿½ï¿½
+			ResultSet rs = stmt.executeQuery(query);		//selectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 			rs.next();
 			catnum = Integer.parseInt(rs.getString("catnum"));
 			
 			stmt.close();
 		}catch(SQLException ex){
-			System.out.println("SQL selectCatnum ¿À·ù : " + ex.getLocalizedMessage());
+			System.out.println("SQL selectCatnum ï¿½ï¿½ï¿½ï¿½ : " + ex.getLocalizedMessage());
 		}	
 		return catnum;
 	}
-	//µî·Ï ÆäÀÌÁö¿¡ small(¼ÒºÐ·ù)¸¦ º¸¿©ÁÖ±â À§ÇØ¼­ select·Î Ã£Àº ÈÄ arrayList ¹è¿­·Î ¸®ÅÏÇØÁÖ´Â ÇÔ¼ö
+	
 	public ArrayList<String> selectCategory(){
-		String query = "SELECT DISTINCT small FROM category";		//DISTINCT Áßº¹ÀÖÀ½ ÇÏ³ª¸¸ Ãâ·Â
+		String query = "SELECT DISTINCT small FROM category";		//DISTINCT ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		ArrayList<String> big = new ArrayList<String>();
 		try{
-			Statement stmt = conn.createStatement();		//¹®ÀÚ¿­ sql¹®À» sql ¼öÇà½ÃÅ³¼ö ÀÖ´Â statement»ý¼º
-			ResultSet rs = stmt.executeQuery(query);		//select¹® ½ÇÇà
+			Statement stmt = conn.createStatement();		//ï¿½ï¿½ï¿½Ú¿ï¿½ sqlï¿½ï¿½ï¿½ï¿½ sql ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ ï¿½Ö´ï¿½ statementï¿½ï¿½ï¿½ï¿½
+			ResultSet rs = stmt.executeQuery(query);		//selectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 			while(rs.next()){
 				big.add(rs.getString("small"));
@@ -103,17 +119,17 @@ private static Connection conn;
 			
 			stmt.close();
 		}catch(SQLException ex){
-			System.out.println("SQL select ¿À·ù : " + ex.getLocalizedMessage());
+			System.out.println("SQL select ï¿½ï¿½ï¿½ï¿½ : " + ex.getLocalizedMessage());
 		}	
 		return big;
 	}
-	//ÀÔ·ÂÇÑ product ¼Ó¼º view ÆäÀÌÁö¿¡¼­ º¸¿©ÁÖ±â À§ÇÑ select 
+	
 	public ArrayList<String> selectProduct(){
 		String query = "SELECT * FROM product";
 		ArrayList<String> al = new ArrayList<String>();
 		try{
-			Statement stmt = conn.createStatement();		//¹®ÀÚ¿­ sql¹®À» sql ¼öÇà½ÃÅ³¼ö ÀÖ´Â statement»ý¼º
-			ResultSet rs = stmt.executeQuery(query);		//select¹® ½ÇÇà
+			Statement stmt = conn.createStatement();		//ï¿½ï¿½ï¿½Ú¿ï¿½ sqlï¿½ï¿½ï¿½ï¿½ sql ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ ï¿½Ö´ï¿½ statementï¿½ï¿½ï¿½ï¿½
+			ResultSet rs = stmt.executeQuery(query);		//selectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 			rs.last();
 			
@@ -131,17 +147,16 @@ private static Connection conn;
 			
 			stmt.close();
 		}catch(SQLException ex){
-			System.out.println("SQL selectCatnum ¿À·ù : " + ex.getLocalizedMessage());
+			System.out.println("SQL selectCatnum ï¿½ï¿½ï¿½ï¿½ : " + ex.getLocalizedMessage());
 		}	
 		return al;
 	}
-	//Image ÀÌ¸§ ¹Þ¾Æ¿À´Â select
 		public ArrayList<String> selectImage(){
 			String query = "SELECT * FROM image";
 			ArrayList<String> al = new ArrayList<String>();
 			try{
-				Statement stmt = conn.createStatement();		//¹®ÀÚ¿­ sql¹®À» sql ¼öÇà½ÃÅ³¼ö ÀÖ´Â statement»ý¼º
-				ResultSet rs = stmt.executeQuery(query);		//select¹® ½ÇÇà
+				Statement stmt = conn.createStatement();		//ï¿½ï¿½ï¿½Ú¿ï¿½ sqlï¿½ï¿½ï¿½ï¿½ sql ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ ï¿½Ö´ï¿½ statementï¿½ï¿½ï¿½ï¿½
+				ResultSet rs = stmt.executeQuery(query);		//selectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				
 				rs.last();
 
@@ -154,11 +169,10 @@ private static Connection conn;
 				
 				stmt.close();
 			}catch(SQLException ex){
-				System.out.println("SQL selectCatnum ¿À·ù : " + ex.getLocalizedMessage());
+				System.out.println("SQL selectCatnum ï¿½ï¿½ï¿½ï¿½ : " + ex.getLocalizedMessage());
 			}	
 			return al;
 		}
-	//connection ´Ù »ç¿ëÇßÀ¸´Ï ´Ý¾ÆÁÖ±â !
 	public void close(){
 		try{
 			if(conn != null){
@@ -166,7 +180,7 @@ private static Connection conn;
 				conn = null;
 			}
 		}catch(SQLException ex){
-			System.out.println("SQL ¿À·ù(close) : " + ex.getLocalizedMessage());
+			System.out.println("SQL ï¿½ï¿½ï¿½ï¿½(close) : " + ex.getLocalizedMessage());
 		}
 		
 	}
