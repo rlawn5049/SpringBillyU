@@ -61,7 +61,7 @@ height:100%;
 <div id="wrapper">
 <center>
 <div style="width:1000px">
-<h2 id="Y_result" style="float:left;display:inline-block;">내가등록한상품</h2>
+<h2 id="Y_result" style="float:left;display:inline-block;">내가 올린 상품</h2>
 <div style="background:#428bca;width:20px;height:20px;display:inline-block;float:right"> </div><p style="display:inline-block;float:right">대여</p>
 <div style="background:#ebcccc;width:20px;height:20px;display:inline-block;float:right"> </div><p style="display:inline-block;float:right">판매</p>
 </div>

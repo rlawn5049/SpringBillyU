@@ -1,3 +1,4 @@
+<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     <%request.setCharacterEncoding("euc-kr");%>
@@ -8,17 +9,29 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:useBean id="rent" class="rent.rentDAO" />
 <%
-String pronum = request.getParameter("pronum");
-Object quest = request.getParameter("apple");
-String ren = request.getParameter("ren");
+Object apple = request.getParameter("apple");
+String guest = apple.toString();
+
+int pronum = Integer.parseInt(request.getParameter("pronum"));
 String way = request.getParameter("wayRadio");
+String message = request.getParameter("message");
+int startdate=Integer.parseInt(request.getParameter("startdate"));
+int rentday=Integer.parseInt(request.getParameter("ren"));
+int total=Integer.parseInt(request.getParameter("total"));
 
-out.println(pronum);
-out.println(quest);
-out.println(ren);
-out.println(way);
+out.println(guest+"<br />");
+out.println(pronum+"<br />");
+out.println(way+"<br />");
+out.println(message+"<br />");
+out.println(startdate+"<br />");
+out.println(rentday+"<br />");
+out.println(total+"<br />");
 
+
+rent.insert_rent(guest, pronum, message, way, startdate, rentday, total);
+response.sendRedirect("Y_Rent?pronum="+pronum+"");
 %>
 </body>
 </html>

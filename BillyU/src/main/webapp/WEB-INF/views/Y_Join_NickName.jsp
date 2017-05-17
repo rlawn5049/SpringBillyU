@@ -36,7 +36,7 @@
 		{
 			if(kakao.equals(rs.getString("usernumber")))
 			{
-				response.sendRedirect("Y_Login.jsp");
+				response.sendRedirect("Y_Login");
 			}
 		}
 	}catch(Exception e){
@@ -47,7 +47,7 @@
 		conn.close();
 	}
 %>
-<form method="post" action="Y_Join_OK.jsp" name="name" id="form_check">
+<form method="post" action="Y_Join_OK" name="name" id="form_check">
 닉네임 : <input type="text" name="nickname" id="nick" placeholder="1글자 이상 10글자 이하" />
 <input type="hidden" name="kakaoid" value="<%=kakao %>"/>
 <input type="button" value="회원가입" id="sub" onclick="check()"/><p>
@@ -79,7 +79,7 @@ $('#nick').keyup(function(){
 
 	$.ajax({
 		type:"POST",
-		url:"./Y_ID_Check.jsp",
+		url:"./Y_ID_Check",
 		data : {nickname : $('#nick').val() },
 		success:WhenSuccess,
 		error:WhenError

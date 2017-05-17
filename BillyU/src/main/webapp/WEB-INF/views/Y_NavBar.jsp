@@ -544,7 +544,7 @@
         	$('#Y_NavContent_Left_Up').css('display','block');
         	$.ajax({
         		type : "POST",
-        		url : "./Y_All_Category.jsp",
+        		url : "./Y_All_Category",
         		success:WhenSuccess,
         		error:WhenError
         	});

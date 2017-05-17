@@ -129,12 +129,17 @@
 										<td><%= al.get(6) %></td>
 									</tr>
 									<tr>
+										<td><label for="possibleDay">대여시작 날짜 : </label></td>
+										<td><input type="text" name="startdate" placeholder="ex)20170516" /></td>
+									</tr>
+									<tr>
 										<td><label for="possibleDay">신청할 일수 : </label></td>
-										<td><input type="text" id="ren" name="ren"/></td>
+										<td><input type="number" step="1" id="ren" name="ren"/></td>
 									</tr>
 									<tr>
 										<td><label for="possibleDay">총 액 : </label></td>
 										<td><span id="total_money">0원</span></td>
+										<input type="hidden" id="hidden_total" name="total" />
 									</tr>
 									<tr>
 										<td><label for="tradeWay">거래방식 : </label></td>
@@ -147,6 +152,10 @@
 											class="radio-inline"><input type="radio" value="택배"
 												name="wayRadio">택배</label>
 												</td>
+									</tr>
+									<tr>
+										<td><label for="possibleDay">메세지 : </label></td>
+										<td><textarea name="message" cols="21" rows="5"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
@@ -254,7 +263,8 @@
 		var rent =  Number($('#rent_cost').val());
 		var bo =  Number($('#bo_cost').val());
 		var total =  Math.floor(Number(to*(rent/7)+bo));
-	
+		
+		$('#hidden_total').val(total);
 		$('#total_money').text(total+'원');
 		$('#title_cost').html(total+'원');
 	});

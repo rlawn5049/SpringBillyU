@@ -176,8 +176,8 @@ height:100%;
 	<div class="panel panel-danger <%=Y_Category%> post">
       <div class="panel-heading" style="height:32px"><span style="float:left">상품번호(<%=pronum %>)</span><span style="text-align:center;">판매상품(<%=cate_name %>)</span><span style="float:right;color:white"><%=curtime %></span></div>
       <div class="panel-body">
-      <div class="col-xs-3 col-md-3"><a href="K_view.jsp?pronum=<%=pronum %>"><img class="img-rounded" src="<%=img %>" alt="사진없음" /></a></div>
-      <div class="col-xs-6 col-md-3"><a href="K_view.jsp?pronum=<%=pronum %>"><%=title %></a></div>
+      <div class="col-xs-3 col-md-3"><a href="K_view?pronum=<%=pronum %>"><img class="img-rounded" src="<%=img %>" alt="사진없음" /></a></div>
+      <div class="col-xs-6 col-md-3"><a href="K_view?pronum=<%=pronum %>"><%=title %></a></div>
       <div class="col-xs-1 col-md-2"><br /><br /></div>
       <div class="col-xs-1 col-md-2">물품상태<br /><br /><%=proinfo %></div>
       <div class="col-xs-1 col-md-2">판매가격<br /><br /><%=salprice %></div>

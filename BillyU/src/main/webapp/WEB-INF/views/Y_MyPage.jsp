@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>마이페이지</title>
   <meta charset="utf-8">
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,26 +43,27 @@ width:100%;
 <body>
 <%
 if(session.getAttribute("id") == null){
-response.sendRedirect("Y_Login.jsp");}
+response.sendRedirect("Y_Login");}
 %>  
 <jsp:include page="Y_NavBar.jsp" />
 <br />
 <br />
-<div class="All_wrap">
 <div class="container">
-  <div class="row">
-    <nav class="col-sm-3">
-      <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
-        <li id="#section1"><a>내가 올린 상품</a></li>
-        <li id="#section2" class="active"><a>나에게 온 메일</a></li>
-        <li id="#section3"><a>신청대기 중인 상품</a></li>
-        <li id="#section4"><a>개인정보 수정</a></li>
-      </ul>
-    </nav>
+  <div class="btn-group btn-group-justified nav-pills">
+    <a id="#section1" class="btn btn-primary">내가 올린 상품</a>
+    <a id="#section2" class="btn btn-primary">나에게 온 메일</a>
+    <a id="#section3" class="btn btn-primary">신청대기 중인 상품</a>
+    <a id="#section4" class="btn btn-primary">개인정보 수정</a>
   </div>
 </div>
+
+<div class="All_wrap">
+<center>
 <div id="product-container">
-<div id="here"></div>
+<div id="here" style="width:80%">
+<jsp:include page="Y_MyProduct.jsp" />
+</div>
+</center>
 </div>
 </div>
 <script type="text/javascript">
@@ -72,7 +73,7 @@ $('.nav-pills li').click(function(){
 	$(this).addClass('active');
 	
 });
-$('.nav-pills li:nth-child(1)').click(function(){
+$('.nav-pills a:nth-child(1)').click(function(){
 	$.ajax({
 		type : "POST",
 		url : "./Y_MyProduct",
@@ -80,7 +81,7 @@ $('.nav-pills li:nth-child(1)').click(function(){
 		error : WhenError
 	});
 });
-$('.nav-pills li:nth-child(2)').click(function(){
+$('.nav-pills a:nth-child(2)').click(function(){
 	$.ajax({
 		type : "POST",
 		url : "./Y_MyMail",
@@ -88,7 +89,7 @@ $('.nav-pills li:nth-child(2)').click(function(){
 		error : WhenError
 	});
 });
-$('.nav-pills li:nth-child(3)').click(function(){
+$('.nav-pills a:nth-child(3)').click(function(){
 	$.ajax({
 		type : "POST",
 		url : "./Y_MyWait",
@@ -96,7 +97,7 @@ $('.nav-pills li:nth-child(3)').click(function(){
 		error : WhenError
 	});
 });
-$('.nav-pills li:nth-child(4)').click(function(){
+$('.nav-pills a:nth-child(4)').click(function(){
 	$.ajax({
 		type : "POST",
 		url : "./Y_MyPerson",
