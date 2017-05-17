@@ -1,6 +1,7 @@
 package com.inhatc.BillyU;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -119,9 +120,18 @@ public class HomeController {
 	public String K_product(HttpServletRequest httpservletrequest, Model model){
 		return "K_product";
 	}
+	//상품 세부사항 등록 Mapping 후에 상품 사진 등록 페이지로 이동
 	@RequestMapping(value = "/regist.do")
 	public String registdo(HttpServletRequest req, Model model){
+		//DB 한글 깨짐 방지 명령어
+		try {
+			req.setCharacterEncoding("euc-kr");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Capstone_productDAO dao = new Capstone_productDAO();
+		
 		String category = req.getParameter("category"); 
 		int catnum = dao.selectCatnum(category); 
 		String title = req.getParameter("title");
@@ -182,6 +192,7 @@ public class HomeController {
 	public String K_addImg(){
 		return "K_addImg";
 	}
+	//상품 사진 등록 Mapping 후에 MyPage로 이동
 	@RequestMapping(value = "/regist.ro")
 	public String registro(HttpServletRequest req, Model model) throws IOException{
 		String savePath = "C:/Users/rlawn/Documents/Springgit/BillyU/src/main/webapp/resources/img";

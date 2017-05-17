@@ -79,11 +79,11 @@
 							<div class="form-group">
 								<label for="procondition">상품상태 :</label> <label
 									class="radio-inline"> <input type="radio"
-									name="procondition" value="s">S급
+									name="procondition" value="s급">S급
 								</label> <label class="radio-inline"> <input type="radio"
-									name="procondition" value="a">A급
+									name="procondition" value="a급">A급
 								</label> <label class="radio-inline"> <input type="radio"
-									name="procondition" value="b">B급
+									name="procondition" value="b급">B급
 								</label>
 							</div>
 							<div class="form-group">
@@ -103,7 +103,7 @@
 
 							<div class="tab-content">
 								<div class="form-group">
-									<input class="tratype" type="hidden" name="tratype" value="" />
+									<input class="tratype" type="hidden" name="tratype" value="대여" />
 								</div>
 								<div id="rent" class="re tab-pane fade in active">
 									<h3>대여</h3>
@@ -126,9 +126,9 @@
 									<div class="form-group">
 										<label for="traway">거래방법 : </label> <label
 											class="radio-inline"> <input type="radio"
-											name="traway" value="delivery">택배
+											name="traway" value="택배">택배
 										</label> <label class="radio-inline"> <input type="radio"
-											name="traway" value="direct">직거래
+											name="traway" value="직거래">직거래
 										</label>
 									</div>
 									<button type="submit" class="submit btn btn-default btn-block">Submit</button>
@@ -143,9 +143,9 @@
 									<div class="form-group">
 										<label for="traway">거래방법 : </label> <label
 											class="radio-inline"> <input type="radio"
-											name="traway" value="delivery">택배
+											name="traway" value="택배">택배
 										</label> <label class="radio-inline"> <input type="radio"
-											name="traway" value="direct">직거래
+											name="traway" value="직거래">직거래
 										</label>
 									</div>
 									<button type="submit" class="submit btn btn-default btn-block" >등록하기</button>

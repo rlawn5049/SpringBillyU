@@ -23,7 +23,7 @@ private static Connection conn;
 			System.out.println("����̹��� ã�� �� �����ϴ�.");
 		}
 		try{
-			conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/billyu?useUnicode=true&characterEncoding=euc-kr","root","1234");
+			conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/billyu?useUnicode=true&characterEncoding=euckr","root","1234");
 		}catch(SQLException ex){
 			System.out.println("SQL ����(Connection) : " + ex.getLocalizedMessage());
 		}
